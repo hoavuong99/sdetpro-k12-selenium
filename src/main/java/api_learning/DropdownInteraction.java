@@ -20,13 +20,13 @@ public class DropdownInteraction {
             SelectExtension select = new SelectExtension(dropdownEle);
 
             select.selectOption1();
-            debugWait();
+            Thread.sleep(1500);
 
             select.selectByIndex(2);
-            debugWait();
+            Thread.sleep(1500);
 
             select.selectByValue("1");
-            debugWait();
+            Thread.sleep(1500);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -35,11 +35,11 @@ public class DropdownInteraction {
         }
     }
 
-    private static void debugWait() {
-        try {
-            Thread.sleep(1500);
-        } catch (Exception ignored) {
-
-        }
-    }
+//    private static void debugWait() {
+//        try {
+//            Thread.sleep(1500);
+//        } catch (Exception ignored) {
+//
+//        }
 }
+
