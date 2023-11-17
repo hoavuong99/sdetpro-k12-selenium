@@ -26,23 +26,23 @@ public class JSAlerts {
 
         try {
             WebElement resultEle = driver.findElement(RESULT_SEL);
+
+
             //JS Alert
-            driver.findElement(JS_ALERT_SEL).click();
-            Alert jsAlert = wait.until(ExpectedConditions.alertIsPresent());
-            jsAlert.accept();
+
+            // driver.findElement(JS_ALERT_SEL).click();
+            // Alert jsAlert = wait.until(ExpectedConditions.alertIsPresent());
+            // jsAlert.accept();
+
+            handleAlert(driver, JS_ALERT_SEL, true);
             System.out.println(resultEle.getText());
 
             //JS Confirm alert
-            driver.findElement(JS_ALERT_CONFIRM_SEL).click();
-            Alert jsAlertConfirm = wait.until(ExpectedConditions.alertIsPresent());
-            jsAlertConfirm.dismiss();
+            handleAlert(driver, JS_ALERT_CONFIRM_SEL, false);
             System.out.println(resultEle.getText());
 
             //JS prompt
-            driver.findElement(JS_ALERT_PROMPT_SEL).click();
-            Alert jsAlertPrompt = wait.until(ExpectedConditions.alertIsPresent());
-            jsAlertPrompt.sendKeys("Hello");
-            jsAlertPrompt.accept();
+            handleAlert(driver, JS_ALERT_PROMPT_SEL, true, "Hello everyone");
             System.out.println(resultEle.getText());
 
         } catch (Exception e) {
@@ -51,5 +51,25 @@ public class JSAlerts {
             driver.quit();
         }
 
+    }
+
+    private static void handleAlert(WebDriver driver, By triggerBtn, boolean isAccepting, String... messages) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        driver.findElement(triggerBtn).click();
+        Alert jsAlert = wait.until(ExpectedConditions.alertIsPresent());
+        if (messages.length > 0) {
+            jsAlert.sendKeys(messages[0]);
+            makeJsAlertDecision(jsAlert, isAccepting);
+        } else {
+            makeJsAlertDecision(jsAlert, isAccepting);
+        }
+    }
+
+    private static void makeJsAlertDecision(Alert jsAlert, boolean isAccepting) {
+        if (isAccepting) {
+            jsAlert.accept();
+        } else {
+            jsAlert.dismiss();
+        }
     }
 }

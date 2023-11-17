@@ -24,7 +24,6 @@ public class DynamicControl {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         try {
-
             //checkbox form
             WebElement checkboxFormEle = driver.findElement(CHECKBOX_FORM_SEL);
             WebElement inputFormEle = driver.findElement(INPUT_FORM_SEL);
