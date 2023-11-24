@@ -20,7 +20,9 @@ public class LoginPageModel01 {
     public WebElement password(){
         return this.driver.findElement(PASSWORD_SEL);
     }
-    public WebElement loginBtn(){
+    public WebElement loginBtn() {
         return this.driver.findElement(LOGIN_BTN_SEL);
     }
+
+
 }

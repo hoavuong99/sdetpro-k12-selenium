@@ -4,11 +4,6 @@ import driver.DriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import support.ui.WaitForElementEnable;
-
-import java.time.Duration;
 
 public class JsExecutor {
     private static final String TARGET_URL = "https://the-internet.herokuapp.com/floating_menu";

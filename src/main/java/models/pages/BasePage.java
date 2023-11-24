@@ -1,18 +1,20 @@
 package models.pages;
 
-import models.components.FooterComponent;
+import models.components.Component;
+import models.components.global.footer.FooterComponent;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class BasePage {
+public class BasePage extends Component {
     protected final WebDriver driver;
+
     public BasePage(WebDriver driver) {
+        super(driver, driver.findElement(By.tagName("html")));
         this.driver = driver;
     }
-    // Selectors
 
+   public FooterComponent footerComponent(){
+        return findComponent(FooterComponent.class);
+   }
 
-    // Methods
-    public FooterComponent footerComponent(){
-        return new FooterComponent(this.driver);
-    }
 }

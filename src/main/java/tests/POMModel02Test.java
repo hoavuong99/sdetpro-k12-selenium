@@ -12,6 +12,6 @@ public class POMModel02Test {
         LoginPageModel02 loginPageModel02 = new LoginPageModel02(driver);
         loginPageModel02.inputUsername("Hoavuong");
         loginPageModel02.inputPassword("111111");
-        loginPageModel02.clicklOnLoginBtn();
+        loginPageModel02.clickOnLoginBtn();
     }
 }

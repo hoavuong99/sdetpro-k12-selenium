@@ -4,7 +4,6 @@ import driver.DriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import support.ui.SelectExtension;
 
 public class IframeInteraction {
     private static final String TARGET_URL = "https://the-internet.herokuapp.com/iframe";

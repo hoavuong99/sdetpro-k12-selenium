@@ -19,7 +19,7 @@ public class LoginPageModel02 {
     public void inputPassword(String passwordStr){
         this.driver.findElement(PASSWORD_SEL).sendKeys(passwordStr);
     }
-    public void clicklOnLoginBtn(){
+    public void clickOnLoginBtn(){
         this.driver.findElement(LOGIN_BTN_SEL).click();
     }
 }

@@ -1,4 +1,4 @@
-package models.pages;
+package tests;
 
 import models.components.ComponentExploring;
 import models.components.ExternalLoginPage;
@@ -8,7 +8,6 @@ public class GenericTypeTest {
 
     public static void main(String[] args) {
         ComponentExploring componentExploring = new ComponentExploring();
-
         componentExploring.login(InternalLoginPage.class, "Internal user");
         componentExploring.login(ExternalLoginPage.class, "External user");
     }
