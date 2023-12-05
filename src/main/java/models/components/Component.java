@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import support.ui.ExpectedConditionExtension;
 
 import java.lang.reflect.Constructor;
 import java.time.Duration;
@@ -21,6 +22,14 @@ public class Component {
         this.driver = driver;
         this.component = component;
         this.wait = new WebDriverWait(this.driver, Duration.ofSeconds(15));
+    }
+
+    public WebElement getComponent(){
+        return this.component;
+    }
+
+    public WebDriverWait componentWait(){
+        return this.wait;
     }
 
     // narrow down searching scope
@@ -46,7 +55,7 @@ public class Component {
             throw new IllegalArgumentException("[ERR] The component must have annotation for: CssSelector, ID, ... ");
         }
 
-       List<WebElement> results = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(componentSelector));
+       List<WebElement> results = wait.until(ExpectedConditionExtension.presenceOfAllElementsLocatedBy(this.component, componentSelector));
 
         // Define component's constructor
         Class<?>[] params = new Class[]{WebDriver.class, WebElement.class};
