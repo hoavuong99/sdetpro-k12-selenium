@@ -11,4 +11,11 @@ public class FooterTest extends BaseTest {
         FooterTestFlow footerTestFlow = new FooterTestFlow(driver);
         footerTestFlow.verifyFooterComponent();
     }
+
+    @Test
+    public void testCategoryPageFooter() {
+        driver.get("https://demowebshop.tricentis.com/");
+        FooterTestFlow footerTestFlow = new FooterTestFlow(driver);
+        footerTestFlow.verifyProductCategoryFooterComponent();
+    }
 }

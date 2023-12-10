@@ -1,11 +1,17 @@
 package test_flows.global;
 
 import models.components.global.footer.*;
+import models.components.global.header.CategoryItemComponent;
+
 import models.pages.BasePage;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -31,6 +37,38 @@ public class FooterTestFlow {
 
         FollowUsColumnComponent followUsColumnComp = basePage.footerComponent().followUsColumnComponent();
         verifyFollowUsColumn(followUsColumnComp);
+    }
+
+    public void verifyProductCategoryFooterComponent() {
+        // Randomly pickup MainItems from Category menu
+        BasePage basePage = new BasePage(driver);
+        List<CategoryItemComponent> categoryItemComponents = basePage.categoryItemComponents();
+        Assert.assertTrue(!categoryItemComponents.isEmpty(), "There is no item on top menu");
+        int randomCategoryComponentIndex = new SecureRandom().nextInt(categoryItemComponents.size());
+        CategoryItemComponent randomCategoryComponent = categoryItemComponents.get(1);
+        String randomCategoryHref = randomCategoryComponent.categoryItemLinkEle().getAttribute("href");
+
+        // Get sublist (if any) then click on a random sub-item / MainItem (if has no sublist)eiow
+        List<WebElement> subListItems = randomCategoryComponent.subListItems();
+        if (subListItems.isEmpty()) {
+            randomCategoryComponent.categoryItemLinkEle().click();
+        } else {
+            int randomSubItemIndex = new SecureRandom().nextInt(subListItems.size());
+            WebElement randomSubItems = subListItems.get(randomSubItemIndex);
+            randomCategoryHref = randomSubItems.getAttribute("href");
+            randomSubItems.click();
+        }
+
+        // Make sure we are on the right page | Wait until navigation is done
+        try {
+            WebDriverWait wait = randomCategoryComponent.componentWait();
+            wait.until(ExpectedConditions.urlContains(randomCategoryHref));
+        } catch (TimeoutException ignored) {
+            Assert.fail("[ERR] Target page is not matched");
+        }
+
+        // Call common verify method
+        verifyFooterComponent();
     }
 
     private void verifyFollowUsColumn(FooterColumnComponent followUsColumnComponent) {

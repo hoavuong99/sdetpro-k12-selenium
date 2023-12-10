@@ -2,8 +2,12 @@ package models.pages;
 
 import models.components.Component;
 import models.components.global.footer.FooterComponent;
+import models.components.global.header.CategoryItemComponent;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
+
+import java.util.List;
 
 public class BasePage extends Component {
     protected final WebDriver driver;
@@ -13,8 +17,11 @@ public class BasePage extends Component {
         this.driver = driver;
     }
 
-   public FooterComponent footerComponent(){
+    public FooterComponent footerComponent() {
         return findComponent(FooterComponent.class);
-   }
+    }
 
+    public List<CategoryItemComponent> categoryItemComponents() {
+        return findComponents(CategoryItemComponent.class);
+    }
 }
