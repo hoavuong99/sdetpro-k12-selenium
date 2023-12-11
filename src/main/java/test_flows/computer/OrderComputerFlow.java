@@ -13,7 +13,6 @@ public class OrderComputerFlow<T extends ComputerEssentialComponent> {
         this.driver = driver;
     }
     public void buildComputerSpecAndAddToCart(){
-
         ComputerEssentialComponent computerEssentialComp = new ComputerItemDetailsPage(driver).computerEssentialComponent(computerEssentialCompClass);
         computerEssentialComp.selectProcessorType("processor");
         computerEssentialComp.selectRAMType("ram");
