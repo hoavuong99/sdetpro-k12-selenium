@@ -11,9 +11,9 @@ public abstract class ComputerEssentialComponent extends BaseItemComponent {
         super(driver, component);
     }
 
-    public abstract String selectProcessorType(String type);
+    public abstract String selectProcessor(String type);
 
-    public abstract String selectRAMType(String type);
+    public abstract String selectRAM(String type);
 
     public String selectHDD(String type) {
         return selectComputerOption(type);
@@ -36,7 +36,7 @@ public abstract class ComputerEssentialComponent extends BaseItemComponent {
     }
 
     protected String selectComputerOption(String type) {
-        String selectorStr = "//label[contains(text()," + type + ")]";
+        String selectorStr = "//label[contains(text()," + "\"" + type + "\"" + ")]";
         By optionSelector = By.xpath(selectorStr);
         WebElement optionElement = null;
 
@@ -49,6 +49,7 @@ public abstract class ComputerEssentialComponent extends BaseItemComponent {
         if (optionElement == null) {
             throw new RuntimeException("[ERR] The option " + type + " is not existing to select!");
         }
+        optionElement.click();
         return optionElement.getText().trim();
     }
 

@@ -17,14 +17,14 @@ public class StandardComputerComponent extends ComputerEssentialComponent {
     }
 
     @Override
-    public String selectProcessorType(String type) {
+    public String selectProcessor(String type) {
         final int PROCESSOR_DROPDOWN_INDEX = 0;
         WebElement processorDropdownEle = component.findElements(PRODUCT_ATTRIBUTE_SEL).get(PROCESSOR_DROPDOWN_INDEX);
         return selectOption(processorDropdownEle, type);
     }
 
     @Override
-    public String selectRAMType(String type) {
+    public String selectRAM(String type) {
         final int RAM_DROPDOWN_INDEX = 1;
         WebElement ramDropdownEle = component.findElements(PRODUCT_ATTRIBUTE_SEL).get(RAM_DROPDOWN_INDEX);
         return selectOption(ramDropdownEle, type);
